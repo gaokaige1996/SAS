@@ -66,7 +66,22 @@ run;
 #### 3)import from excel and text
 
 ### 9. Data merge and combination
-#### 1)
+#### 1) combination
+```
+Data C;
+Set A B;
+Run;
+```
+A
+B
+#### 2) merge
+```
+Data C;
+Merge A B;
+Run;
+```
+A B
+### 10.
 
 
 
