@@ -81,7 +81,77 @@ Merge A B;
 Run;
 ```
 A B
-### 10.
+### 10. Format
+Display value 5678 as 5678.00 use COMMA8.2
+Display 1234 as $1234.00 use DOLLAR8.2
+### 11. View the contents
+#### 1) of a library
+```
+proc contents data=mylib._all_ nods;
+run;
+```
+#### 2) of a dataset
+```
+proc contents data=mylib.admit; 
+run;
+```
+#### 3) can also use proc datasets
+```
+proc datasets;
+contents data=sasuser._all_ nods;
+quit;
+proc contents data=sasuser._all_ nods; 
+run;
+``` 
+littel difference
+
+#### 4) a list of variables
+```
+proc datasets;
+contents data = sasuers.admit varnum;
+quit;
+
+proc contents data = sasuser.admit varnum;
+run;
+```
+
+Either code is fine to generate a list of variables
+### 11. Format if contains page number or page data
+```
+options nonumber nodate;# does not show page number and page date
+proc print data = clinic.admit;
+var id sex age height weight;
+where age >= 30
+run;
+```
+```
+options date;
+proc freq data = clinic.diabetes;#calculate the frequency
+where fastglus >= 300;
+table sex;
+run;
+```
+can specify the page number
+```
+options nodate pageno = 3;
+```
+page size ,line size
+```
+options pageno = 1 pagesize = 15 linesize = 64;
+```
+begins from 10th observation of the data set,read 6 observations,10,11...15
+```
+options firstobs = 10 obs = 15;
+```
+So shows 4 to 20, 17 observations ???<br>
+The data set options override the system options for this instance only. <br>
+```
+options firstobs=10 obs=15;
+proc print data=sasuser.heart(firstobs=4 obs=20); run;
+```
+
+
+
 
 
 
